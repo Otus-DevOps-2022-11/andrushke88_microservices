@@ -1,0 +1,8 @@
+REPOSITORY                  TAG       IMAGE ID       CREATED         SIZE
+andrushke/ubuntu-tmp-file   latest    5bc273854f25   6 minutes ago   63.1MB
+nginx                       latest    080ed0ed8312   19 hours ago    142MB
+ubuntu                      18.04     3941d3b032a8   3 weeks ago     63.1MB
+hello-world                 latest    feb5d9fea6a5   18 months ago   13.3kB
+
+В docker inspect <u_container_id> выводится информация непосредственно о самом контейнере, например информация о сети и пользователи, т.к. контейнер является изменяемой частью запущеной в изолированной среде.
+В docker inspect <u_image_id> выводится информация о образе собранного из контейнера, неизменной части упакованной и готовой к развёртыванию. Из образов можно создать несколько контейнеров.
