@@ -1,61 +1,70 @@
 version: '3.3'
 services:
+  zipkin:
+    image: openzipkin/zipkin:2.21.0
+    ports:
+      - "9411:9411"
+    networks:
+      - front_net
+      - back_net
+
   post_db:
-    image: mongo:3.2
+    image: mongo:${MONGO_VERSION}
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     volumes:
       - post_db:/data/db
     networks:
-      backend_net:
-        aliases:
-          - comment_db
-          - post_db
+      - back_net
   ui:
+    #build: ./ui
+    #image: ${USERNAME}/ui:${UI_VERSION}
     image: ${USER_NAME}/ui
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     ports:
-      - ${PORT}:9292/tcp
+      - ${UI_PORT}:${UI_PORT}/tcp
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.ui
     networks:
-      - frontend_net
+      - front_net
   post:
+    #build: ./post-py
+    #image: ${USERNAME}/post:${POST_VERSION}
     image: ${USER_NAME}/post
-    networks:
-      - backend_net
-      - frontend_net
-  comment:
-    image: ${USER_NAME}/comment
-    networks:
-      - backend_net
-      - frontend_net
-  prometheus:
-    image: ${USER_NAME}/prometheus
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
+      - POST_DATABASE_HOST=post_db
+      - POST_DATABASE=posts
+    depends_on:
+      - post_db
     ports:
-      - '9090:9090'
-    volumes:
-      - prometheus_data:/prometheus
-    command: # Передаем доп параметры в командной строке
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--storage.tsdb.retention=1d' # Задаем время хранения метрик в 1 день
+      - "5000:5000"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.post
     networks:
-      - backend_net
-      - frontend_net
-  node-exporter:
-    image: prom/node-exporter:v0.15.2
-    user: root
-    volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    command:
-      - '--path.procfs=/host/proc'
-      - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.ignored-mount-points="^/(sys|proc|dev|host|etc)($$|/)"'
+      - front_net
+      - back_net
+
+  comment:
+    #build: ./comment
+    #image: ${USERNAME}/comment:${COMMENT_VERSION}
+    image: ${USER_NAME}/comment
+    environment:
+      - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     networks:
-      - backend_net
+      - front_net
+      - back_net
 
 volumes:
   post_db:
-  prometheus_data:
 
 networks:
-  frontend_net:
-  backend_net:
+   front_net:
+   back_net:
