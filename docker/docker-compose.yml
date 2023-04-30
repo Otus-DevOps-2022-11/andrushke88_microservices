@@ -19,7 +19,7 @@ services:
   ui:
     #build: ./ui
     #image: ${USERNAME}/ui:${UI_VERSION}
-    image: ${USER_NAME}/ui:logging
+    image: ${USER_NAME}/ui
     environment:
       - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     ports:
@@ -34,8 +34,7 @@ services:
   post:
     #build: ./post-py
     #image: ${USERNAME}/post:${POST_VERSION}
-    image: ${USER_NAME}/post:logging
-    environment:
+    image: ${USER_NAME}/post
       - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
       - POST_DATABASE_HOST=post_db
       - POST_DATABASE=posts
@@ -55,7 +54,7 @@ services:
   comment:
     #build: ./comment
     #image: ${USERNAME}/comment:${COMMENT_VERSION}
-    image: ${USER_NAME}/comment:logging
+    image: ${USER_NAME}/comment
     environment:
       - ZIPKIN_ENABLED=${ZIPKIN_ENABLED}
     networks:
