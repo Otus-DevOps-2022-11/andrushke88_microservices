@@ -22,3 +22,4 @@ services:
     image: kibana:7.4.0
     ports:
       - "5601:5601"
+      
