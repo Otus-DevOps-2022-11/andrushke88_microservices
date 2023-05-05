@@ -30,3 +30,28 @@ docker run -d --network=reddit --network-alias=comment andrushke/comment:1.0
 docker run -d --network=reddit -p 9292:9292 andrushke/ui:1.0
 ```
 9 .Уменьшили размер образа ui и записали в файл Dockerfile.1(Alpine Linux)
+
+## ДЗ № 14 Устройство Gitlab CI. Построение процесса непрерывной интеграции 
+1. Cоздана машина с помощью packer образа с докером, в terraform созданы директории и докер файл. 
+2. Были проблемы с root пользователем, исправил, вошёл в контейнер, запустил 
+```console
+gitlab-rails console -e production
+user = User.where(id: 1).first
+user.password = 'secret_pass' 
+user.password_confirmation = 'secret_pass'
+user.save
+```
+3. Создал простой playbook для развертывания Gitlab ansible-playbook-gitlab.yml
+4. Отключил возможность регистрации
+5. Создал группу и проект
+6. Добавил remote в настройки репозитория 
+```console
+git remote add gitlab http:///homework/example.git 
+git push gitlab gitlab-ci-1
+```
+7. Создал pipeline 
+8. Добавил ранера для * Создал docker-compose для запука раннера docker-compose-gitlab_runner.yml 
+9. Зарегистрировал раннера 
+10. Проверил работу пайплайнов 
+11. Добавил разные окружения 
+12. Проверил работу с тегами и динамическими окружениями
