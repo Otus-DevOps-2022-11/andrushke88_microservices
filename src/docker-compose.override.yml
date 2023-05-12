@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  ui:
+    volumes:
+      - "./ui:/ui"
+    ports:
+      - 81:9292
+  post:
+    volumes:
+      - "./post-py:/post"
+  comment:
+    volumes:
+      - "./comment:/comment"
+    command: ["puma", "--debug", "--workers", "2"]
