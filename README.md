@@ -102,3 +102,5 @@ git push gitlab gitlab-ci-1
 4. Запуск приложения в minikube, добавление ui-service.yml
 5. Добавление dev-namespace.yml
 6. Вынос кластера в YaCloud
+
+## **ДЗ № 20 Ingress-контроллеры и сервисы в Kubernetes **
