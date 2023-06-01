@@ -1,0 +1,23 @@
+comment:
+  image:
+    repository: andrushke88/comment
+    tag: latest
+  service:
+    externalPort: 9292
+    internalPort: 9292
+
+post:
+  image:
+    repository: andrushke88/post
+    tag: latest
+  service:
+    externalPort: 5000
+    internalPort: 9292
+
+ui:
+  image:
+    repository: andrushke88/ui
+    tag: latest
+  service:
+    externalPort: 9292
+    internalPort: 9292
