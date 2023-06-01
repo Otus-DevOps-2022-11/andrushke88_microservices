@@ -87,10 +87,18 @@ git push gitlab gitlab-ci-1
 7. Параметризация скрипта, добавлены переменные версии монги, портов src/dst, версий контейнеров и дописан COMPOSE_PROJECT_NAME
 8. Написан docker-compose.override.yml(спасибо docs.docker.com и habr.com)
 
-## **ДЗ № 17 Docker: сети, docker-compose**
+## **ДЗ № 18 Введение в Kubernetes #1**
 1. Подготовка двух vm
 2. Установка докера и k8s на этих vm
 3. Инициализация кластера
 4. Установка сетевого плагина при помощи плагина calico.yaml
 5. Установка kubectrl для управления нодами
 6. Запуск манифестов
+
+## **ДЗ № 19 Основные модели безопасности и контроллеры в Kubernetes **
+1. Установка и запуск minikube
+2. Проверка модулей и приложения
+3. Редактирование post-service.yml, mongo-deployment.yml, comment-deployment.yml и добавление comment-mongodb-service.yml, post-mongodb-service.yml
+4. Запуск приложения в minikube, добавление ui-service.yml
+5. Добавление dev-namespace.yml
+6. Вынос кластера в YaCloud
