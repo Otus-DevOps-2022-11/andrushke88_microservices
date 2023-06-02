@@ -113,3 +113,13 @@ git push gitlab gitlab-ci-1
 7. Изучение Network Policy
 8. Обновление mongo-network-policy.yml с возможностью post добраться до базы данных.
 9. Изучения хранения баз данных в Volume как будто в gcePersistentDisk при помощи PersistentVolume
+
+## **ДЗ № 21 Ingress-контроллеры и сервисы в Kubernetes **
+1. Установка Helm
+2. Деплой Chart
+3. Создаём параметризованные чарты нашего приложения
+4. Обновляем зависимости чарта
+5. Устанавливаем приложения и обновляем релиз
+6. Установка GitLab с чартами
+7. Установка GitLab Runner из Helm Chart
+8. Для автоматического релиза на прод, нужно в пайпе reddit-deploy убрать when manual для шага production.
