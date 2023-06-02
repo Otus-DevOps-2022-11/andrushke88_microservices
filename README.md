@@ -102,3 +102,14 @@ git push gitlab gitlab-ci-1
 4. Запуск приложения в minikube, добавление ui-service.yml
 5. Добавление dev-namespace.yml
 6. Вынос кластера в YaCloud
+
+## **ДЗ № 20 Ingress-контроллеры и сервисы в Kubernetes **
+1. Изучение работы сетевого взаимождействия
+2. Работа с сервисами
+3. Работа с Load Balancer
+4. Изучение Ingress и Ingress Controller
+5. Работа с TLS Termination
+6. Опсание объекта secret в файле secret.yml
+7. Изучение Network Policy
+8. Обновление mongo-network-policy.yml с возможностью post добраться до базы данных.
+9. Изучения хранения баз данных в Volume как будто в gcePersistentDisk при помощи PersistentVolume
